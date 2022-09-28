@@ -326,6 +326,7 @@
                     <thead>
                     <tr>
                       <th>No</th>
+                      <th>Image</th>
                       <th>Name</th>
                       <th>Price</th>
                       <th>Stock</th>
@@ -340,6 +341,11 @@
                         @forelse  ($products as $product)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
+                            <td>
+                                @foreach($product->productgalleries()->get() as $productgallery)
+                                <img src="{{ Storage::url('public/productgalleries/').$productgallery->image }}" class="rounded" style="width: 150px">
+                                @endforeach
+                            </td>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->price }}</td>
                             <td>{{ $product->stock }}</td>

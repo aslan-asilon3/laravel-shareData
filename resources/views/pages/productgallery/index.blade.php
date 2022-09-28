@@ -4,7 +4,7 @@
 
 @section('content')
 
-{{-- @include('sweetalert::alert') --}}
+@include('sweetalert::alert')
 <style>
 
 
@@ -170,47 +170,52 @@
                 <div class="modal-content ">
                     <!-- <input type="hidden" name="email_e" value="admin@filmscafe.in"> -->
                     <div class="modal-header">
-                    <h2 class="modal-title">Add Data Product Gallery:</h2>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     </div>
                     <div class="modal-body get_quote_view_modal_body">
 
+
                         <div class="col-md-12">
                             <!-- general form elements -->
                             <div class="card card-primary">
                               <div class="card-header">
-                                <h3 class="card-title">Quick Example</h3>
+                                <h3 class="card-title">Add Data Product Gallery</h3>
                               </div>
                               <!-- /.card-header -->
                               <!-- form start -->
-                              <form>
+                              <form action="{{route('productgallery.store')}}" method="POST">
+                                @csrf
                                 <div class="card-body">
-                                  <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="exampleInputFile">File input</label>
-                                    <div class="input-group">
-                                      <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                      </div>
-                                      <div class="input-group-append">
-                                        <span class="input-group-text">Upload</span>
-                                      </div>
+                                    
+                                    
+                                    <div class="form-group">
+                                        <label class="font-weight-bold">Product ID</label>
+                                        <input type="text" class="form-control @error('product_id') is-invalid @enderror" name="product_id" value="{{ old('product_id') }}" placeholder="Insert Product ID">
+                                    
+                                        @error('product_id')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
-                                  </div>
-                                  <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                  </div>
+
+
+                                    <div class="form-group">
+                                        <label class="font-weight-bold">Image</label>
+                                        <input type="file" class="form-control @error('image') is-invalid @enderror" name="image">
+                                    
+                                        <!-- error message untuk title -->
+                                        @error('image')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+        
+ 
+
                                 </div>
                                 <!-- /.card-body -->
                 
@@ -222,6 +227,7 @@
                             <!-- /.card -->
 
                         </div>
+
 
                     </div>
                 </div><!-- modal-content -->
@@ -268,17 +274,25 @@
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach ($productgalleries as $productgallery)
+                        @forelse ($productgalleries as $productgallery)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $productgallery->product_id }}</td>
-                            <td>{{ $productgallery->image }}</td>
+                            <td class="text-center">
+                                <img src="{{ Storage::url('public/productgalleries/').$productgallery->image }}" class="rounded" style="width: 150px">
+                            </td>
+                            <td>
                                 <a type="button" class="btn btn-success" href=""> <i class="fa fa-eye"></i> </a>
                                 <a type="button" class="btn btn-info" href=""> <i class="fa fa-edit"></i> </a>
                                 <a type="button" class="btn btn-danger" href=""> <i class="fa fa-trash"></i> </a>
                             </td>
                         </tr>
-                        @endforeach
+                        @empty
+                        <div class="alert alert-danger">
+                            product Gallery Data Unavailable.
+                        </div>
+                    @endforelse
+
 
 
                     </tfoot>

@@ -20,9 +20,9 @@ class Product extends Model
 
     ];
 
-    public function productgallery()
+    public function productgalleries()
     {
-        return $this->hasOne(App\Models\ProductGallery::class);
+        return $this->hasMany(ProductGallery::class);
     }
 
 }
