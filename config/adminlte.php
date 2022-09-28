@@ -107,7 +107,7 @@ return [
     */
 
     'preloader' => [
-        'enabled' => true,
+        'enabled' => false,
         'img' => [
             'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
             'alt' => 'AdminLTE Preloader Image',
@@ -304,11 +304,21 @@ return [
         // Sidebar items:
 
         [
+            'text'        => 'Dashboard',
+            'url'         => '/',
+            'icon'        => 'fas fa-fw fa-tachometer-alt',
+        ],
+        [
             'text'        => 'product',
             'url'         => 'product',
             'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+
+        ],
+        [
+            'text'        => 'Product gallery',
+            'url'         => 'productgallery',
+            'icon'        => 'far fa-fw fa-image',
+
         ],
 
     ],

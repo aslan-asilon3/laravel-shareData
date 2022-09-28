@@ -4,7 +4,7 @@
 
 @section('content')
 
-{{-- @include('sweetalert::alert') --}}
+@include('sweetalert::alert')
 <style>
 
 
@@ -159,8 +159,140 @@
                 </div><!-- modal-content -->
             </form>
         </div><!-- modal-dialog -->
-</div>
-<!-- End Left modal -->
+    </div>
+    <!-- End Left modal -->
+
+
+    <!-- Add Data modal -->
+    <div class="modal modal_outer right_modal fade" id="add_data_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" >
+        <div class="modal-dialog" role="document">
+            <form method="post" action="" id="sales-import" enctype="multipart/form-data">
+                <div class="modal-content ">
+                    <!-- <input type="hidden" name="email_e" value="admin@filmscafe.in"> -->
+                    <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body get_quote_view_modal_body">
+
+
+                        <div class="col-md-12">
+                            <!-- general form elements -->
+                            <div class="card card-primary">
+                              <div class="card-header">
+                                <h3 class="card-title">Add Data Product</h3>
+                              </div>
+                              <!-- /.card-header -->
+                              <!-- form start -->
+                              <form action="{{route('product.store')}}" method="POST">
+                                @csrf
+                                <div class="card-body">
+                                    
+                                    
+                                    <div class="form-group">
+                                        <label class="font-weight-bold">Name</label>
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="">
+                                    
+                                        <!-- error message untuk title -->
+                                        @error('name')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="font-weight-bold">price</label>
+                                        <input type="integer" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" placeholder="">
+                                    
+                                        <!-- error message untuk title -->
+                                        @error('price')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="font-weight-bold">stock</label>
+                                        <input type="integer" class="form-control @error('stock') is-invalid @enderror" name="stock" value="{{ old('stock') }}" placeholder="">
+                                    
+                                        <!-- error message untuk title -->
+                                        @error('stock')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="font-weight-bold">buy</label>
+                                        <input type="integer" class="form-control @error('buy') is-invalid @enderror" name="buy" value="{{ old('buy') }}" placeholder="">
+                                    
+                                        <!-- error message untuk title -->
+                                        @error('buy')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="font-weight-bold">sell</label>
+                                        <input type="integer" class="form-control @error('sell') is-invalid @enderror" name="sell" value="{{ old('sell') }}" placeholder="">
+                                    
+                                        <!-- error message untuk title -->
+                                        @error('sell')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="font-weight-bold">status</label>
+                                        <input type="text" class="form-control @error('status') is-invalid @enderror" name="status" value="{{ old('status') }}" placeholder="">
+                                    
+                                        <!-- error message untuk title -->
+                                        @error('status')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="font-weight-bold">description</label>
+                                        <input type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" placeholder="">
+                                    
+                                        <!-- error message untuk title -->
+                                        @error('description')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                </div>
+                                <!-- /.card-body -->
+                
+                                <div class="card-footer">
+                                  <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                              </form>
+                            </div>
+                            <!-- /.card -->
+
+                        </div>
+
+
+                    </div>
+                </div><!-- modal-content -->
+            </form>
+        </div><!-- modal-dialog -->
+    </div>
+    <!-- Add Data modal -->
 
 
 
@@ -173,7 +305,13 @@
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">
-                    <a type="button" href="" class="btn btn-primary"> <i class="fa fa-plus"></i> Add Data</a>
+                    {{-- <a type="button" href="" class="btn btn-primary"> <i class="fa fa-plus"></i> Add Data</a> --}}
+                        {{-- Add Data right side --}}
+                        <button class="btn  btn-success  btn-import-sales" type="button" id="btn-import" data-toggle="modal" data-target="#add_data_modal"><i class="fas fa-plus"></i> Add Data</button>
+                        <div class="progress" id="progressBar" style="text-align: center;height:20px; display:none" >
+                            <div class="bar" style="text-align: center;height:20px;"></div >
+                            <div class="percent" style="text-align: center; height:20px; padding-top:10px;margin:none;">0%</div >
+                        </div>
                         {{-- import right side --}}
                         <button class="btn  btn-success  btn-import-sales" type="button" id="btn-import" data-toggle="modal" data-target="#information_modal"><i class="fas fa-upload"></i> Import Data Sales</button>
                         <div class="progress" id="progressBar" style="text-align: center;height:20px; display:none" >
@@ -190,22 +328,41 @@
                       <th>No</th>
                       <th>Name</th>
                       <th>Price</th>
+                      <th>Stock</th>
+                      <th>Buy</th>
+                      <th>Sell</th>
+                      <th>Status</th>
+                      <th>Description</th>
                       <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach ($products as $product)
+                        @forelse  ($products as $product)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->price }}</td>
+                            <td>{{ $product->stock }}</td>
+                            <td>{{ $product->buy }}</td>
+                            <td>{{ $product->sell }}</td>
+                            <td>{{ $product->status }}</td>
+                            <td>{{ $product->description }}</td>
                             <td>
-                                <a type="button" class="btn btn-success" href=""> <i class="fa fa-eye"></i> </a>
-                                <a type="button" class="btn btn-info" href=""> <i class="fa fa-edit"></i> </a>
-                                <a type="button" class="btn btn-danger" href=""> <i class="fa fa-trash"></i> </a>
+                                <form onsubmit="return confirm('<h1>Apakah Anda Yakin ?</h1>');" action="{{ route('product.destroy', $product->id) }}" method="POST">
+                                    <a href="{{ route('product.show', $product->id) }}" class="btn btn-sm btn-info"> <i class="fa fa-eye"></i> </a>
+                                    <a href="{{ route('product.edit', $product->id) }}" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i> </a>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger"> <i class="fa fa-trash"></i> </button>
+                                </form>
                             </td>
                         </tr>
-                        @endforeach
+                        @empty
+                        <div class="alert alert-danger">
+                            Product Data Unavailable
+                        </div>
+                       @endforelse
+
 
 
                     </tfoot>

@@ -15,8 +15,20 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+
+            // $table->string('batch');
             $table->string('name');
+            // $table->text('heading');
+            // $table->string('color'); return $this->hasMany(App\Models\ProductColor::class);
+            // $table->string('size'); // return $this->hasMany(App\Models\ProductSize::class);
             $table->integer('price');
+            $table->integer('stock');
+            $table->integer('buy');
+            $table->integer('sell');
+            $table->string('status')->default('onsale');
+            $table->text('description');
+            // $table->text('comment');
+            // $table->text('rating');
             $table->timestamps();
         });
     }

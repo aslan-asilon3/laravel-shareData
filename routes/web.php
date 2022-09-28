@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductGalleryController;
 
 
 /*
@@ -21,3 +22,7 @@ Route::get('/', function () {
 
  
 Route::resource('product', ProductController::class);
+// Route::post('product-import', [ProductController::class, 'import'])->route('product-import');
+
+ 
+Route::resource('productgallery', ProductGalleryController::class);
