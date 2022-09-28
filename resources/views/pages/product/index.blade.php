@@ -322,57 +322,71 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                  <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Image</th>
-                      <th>Name</th>
-                      <th>Price</th>
-                      <th>Stock</th>
-                      <th>Buy</th>
-                      <th>Sell</th>
-                      <th>Status</th>
-                      <th>Description</th>
-                      <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        @forelse  ($products as $product)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>
-                                @foreach($product->productgalleries()->get() as $productgallery)
-                                <img src="{{ Storage::url('public/productgalleries/').$productgallery->image }}" class="rounded" style="width: 150px">
-                                @endforeach
-                            </td>
-                            <td>{{ $product->name }}</td>
-                            <td>{{ $product->price }}</td>
-                            <td>{{ $product->stock }}</td>
-                            <td>{{ $product->buy }}</td>
-                            <td>{{ $product->sell }}</td>
-                            <td>{{ $product->status }}</td>
-                            <td>{{ $product->description }}</td>
-                            <td>
-                                <form onsubmit="return confirm('<h1>Apakah Anda Yakin ?</h1>');" action="{{ route('product.destroy', $product->id) }}" method="POST">
-                                    <a href="{{ route('product.show', $product->id) }}" class="btn btn-sm btn-info"> <i class="fa fa-eye"></i> </a>
-                                    <a href="{{ route('product.edit', $product->id) }}" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i> </a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger"> <i class="fa fa-trash"></i> </button>
-                                </form>
-                            </td>
-                        </tr>
-                        @empty
-                        <div class="alert alert-danger">
-                            Product Data Unavailable
-                        </div>
-                       @endforelse
+                    <div style="overflow-x:auto;">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                            <th>No</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Heading</th>
+                            <th>Color</th>
+                            <th>Size</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Buy</th>
+                            <th>Sell</th>
+                            <th>Batch</th>
+                            <th>Status</th>
+                            <th>Description</th>
+                            <th>Comment</th>
+                            <th>Rating</th>
+                            <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @forelse  ($products as $product)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>
+                                        @foreach($product->productgalleries()->get() as $productgallery)
+                                        <img src="{{ Storage::url('public/productgalleries/').$productgallery->image }}" class="rounded" style="width: 150px">
+                                        @endforeach
+                                    </td>
+                                    <td>{{ mb_strimwidth($product->name, 0, 10, "..."); }}</td>
+                                    <td> {{ mb_strimwidth($product->heading, 0, 10, "...");  }}</td>
+                                    <td>{{ $product->color }}</td>
+                                    <td>{{ $product->size }}</td>
+                                    <td>{{ $product->price }}</td>
+                                    <td>{{ $product->stock }}</td>
+                                    <td>{{ $product->buy }}</td>
+                                    <td>{{ $product->sell }}</td>
+                                    <td>{{ $product->batch }}</td>
+                                    <td>{{ $product->status }}</td>
+                                    <td>{{ mb_strimwidth($product->description, 0, 10, "..."); }}</td>
+                                    <td>{{ mb_strimwidth($product->comment, 0, 10, "..."); }}</td>
+                                    <td>{{ mb_strimwidth($product->rating, 0, 10, "..."); }}</td>
+                                    <td>
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('product.destroy', $product->id) }}" method="POST">
+                                            <a href="{{ route('product.show', $product->id) }}" class="btn btn-sm btn-info"> <i class="fa fa-eye"></i> </a>
+                                            <a href="{{ route('product.edit', $product->id) }}" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i> </a>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger"> <i class="fa fa-trash"></i> </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @empty
+                                <div class="alert alert-danger">
+                                    Product Data Unavailable
+                                </div>
+                            @endforelse
 
 
 
-                    </tfoot>
-                  </table>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
                 <!-- /.card-body -->
               </div>

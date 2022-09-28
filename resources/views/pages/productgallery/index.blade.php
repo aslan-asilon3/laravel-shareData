@@ -204,7 +204,7 @@
 
                                     <div class="form-group">
                                         <label class="font-weight-bold">Image</label>
-                                        <input type="file" class="form-control @error('image') is-invalid @enderror" name="image">
+                                        <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" >
                                     
                                         <!-- error message untuk title -->
                                         @error('image')
@@ -213,7 +213,6 @@
                                             </div>
                                         @enderror
                                     </div>
-        
  
 
                                 </div>
@@ -278,13 +277,17 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $productgallery->product_id }}</td>
-                            <td class="text-center">
-                                <img src="{{ Storage::url('public/productgalleries/').$productgallery->image }}" class="rounded" style="width: 150px">
+                            <td class="text-center" style="width: 30px;height:30px;">
+                                <img src="{{ Storage::url('public/productgalleries/').$productgallery->image }}" class="rounded w-10 h-10" style="width: 30px;height:30px;">
                             </td>
                             <td>
-                                <a type="button" class="btn btn-success" href=""> <i class="fa fa-eye"></i> </a>
-                                <a type="button" class="btn btn-info" href=""> <i class="fa fa-edit"></i> </a>
-                                <a type="button" class="btn btn-danger" href=""> <i class="fa fa-trash"></i> </a>
+                              <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('productgallery.destroy', $productgallery->id) }}" method="POST">
+                                <a href="{{ route('productgallery.show', $productgallery->id) }}" class="btn btn-sm btn-info"> <i class="fa fa-eye"></i> </a>
+                                <a href="{{ route('productgallery.edit', $productgallery->id) }}" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i> </a>
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger"> <i class="fa fa-trash"></i> </button>
+                            </form>
                             </td>
                         </tr>
                         @empty

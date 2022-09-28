@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ProductGallery;
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
 
 class ProductGalleryController extends Controller
 {
@@ -40,13 +41,32 @@ class ProductGalleryController extends Controller
         if($productgallery){
             //redirect dengan pesan sukses
             alert()->success('Horee!','Data Berhasil Di Edit!.'); 
-            return redirect()->route('productgallery.index')->with(['success' => 'Data Berhasil Disimpan!']);
+            return redirect()->route('productgallery.index');
         }else{
             //redirect dengan pesan error
             alert()->error('Sorry','Data Tidak Berhasil Di Edit!.');
-            return redirect()->route('productgallery.index')->with(['error' => 'Data Gagal Disimpan!']);
+            return redirect()->route('productgallery.index');
         }
     }
+
+
+        public function destroy($id)
+    {
+    $productgallery = ProductGallery::findOrFail($id);
+    Storage::disk('local')->delete('public/productgalleries/'.$productgallery->image);
+    $productgallery->delete();
+
+    if($productgallery){
+        //redirect dengan pesan sukses
+        alert()->success('Horee!','Data Berhasil Di Hapus!.'); 
+        return redirect()->route('productgallery.index');
+    }else{
+        //redirect dengan pesan error
+        alert()->error('Sorry','Data Tidak Berhasil Di Hapus!.');
+        return redirect()->route('productgallery.index');
+    }
+    }
+
 
 
 }

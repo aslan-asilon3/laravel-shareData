@@ -309,17 +309,53 @@ return [
             'icon'        => 'fas fa-fw fa-tachometer-alt',
         ],
         [
-            'text'        => 'product',
-            'url'         => 'product',
-            'icon'        => 'far fa-fw fa-file',
-
+            'text'    => 'Product',
+            'icon'    => 'fas fa-fw fa-database',
+            'submenu' => [
+                [
+                    'text' => 'Product List',
+                    'url'  => 'product',
+                    // 'url'  => 'admin/sales',
+                ],
+                [
+                    'text' => 'Product Gallery',
+                    'url'  => 'productgallery',
+                ],
+                [
+                    'text' => 'Product Size',
+                    // 'url'  => '',
+                ],
+                [
+                    'text' => 'Product Color',
+                    // 'url'  => '',
+                ],
+                [
+                    'text'    => 'level_one',
+                    'url'     => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'level_two',
+                            'url'  => '#',
+                        ],
+                        [
+                            'text'    => 'level_two',
+                            'url'     => '#',
+                            'submenu' => [
+                                [
+                                    'text' => 'level_three',
+                                    'url'  => '#',
+                                ],
+                                [
+                                    'text' => 'level_three',
+                                    'url'  => '#',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ],
-        [
-            'text'        => 'Product gallery',
-            'url'         => 'productgallery',
-            'icon'        => 'far fa-fw fa-image',
-
-        ],
+    
 
     ],
 
