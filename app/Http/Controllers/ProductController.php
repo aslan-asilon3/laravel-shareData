@@ -45,13 +45,19 @@ class ProductController extends Controller
 
             if($product){
                 //redirect dengan pesan sukses
-                alert()->success('Horee!','Data Berhasil Di Tambahkan!.'); 
+                alert()->success('Horee!','Data Berhasil Di Tambahkan!.');
                 return redirect()->route('product.index')->with(['success' => 'Data Berhasil Disimpan!']);
             }else{
                 //redirect dengan pesan error
                 alert()->error('Sorry','Data Tidak Berhasil Di Tambahkan!.');
                 return redirect()->route('product.index')->with(['error' => 'Data Gagal Disimpan!']);
             }
+        }
+
+            public function exportTemplate()
+        {
+
+            return Excel::download(new ExportTemplateDataSales, 'data-sales ' . now() . '.xlsx');
         }
 
 
@@ -96,7 +102,7 @@ class ProductController extends Controller
 
                 if($product){
                     //redirect dengan pesan sukses
-                    alert()->success('Horee!','Data Berhasil Di Edit!.'); 
+                    alert()->success('Horee!','Data Berhasil Di Edit!.');
                     return redirect()->route('product.index')->with(['success' => 'Data Berhasil Disimpan!']);
                 }else{
                     //redirect dengan pesan error
@@ -112,7 +118,7 @@ class ProductController extends Controller
 
         if($product){
             //redirect dengan pesan sukses
-            alert()->success('Horee!','Data Berhasil Di Hapus!.'); 
+            alert()->success('Horee!','Data Berhasil Di Hapus!.');
             return redirect()->route('product.index')->with(['success' => 'Data Berhasil Disimpan!']);
         }else{
             //redirect dengan pesan error

@@ -141,9 +141,9 @@
                                     <li>Pada Kolom <b> Tanggal di Template Excel </b>dengan Format <b> Text </b>  </li>
                                     <br>
                                     {{-- <li>Milk</li> --}}
-                                    </ol> 
+                                    </ol>
                                 </div>
-            
+
                                 <span id="data_reference_import"></span>
                                 <input id="reference_import" type="hidden" name="reference_import" value="">
                                 <input id="type_input" type="hidden" name="type_input" value="import">
@@ -188,12 +188,12 @@
                               <form action="{{route('product.store')}}" method="POST">
                                 @csrf
                                 <div class="card-body">
-                                    
-                                    
+
+
                                     <div class="form-group">
                                         <label class="font-weight-bold">Name</label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="">
-                                    
+
                                         <!-- error message untuk title -->
                                         @error('name')
                                             <div class="alert alert-danger mt-2">
@@ -201,11 +201,11 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label class="font-weight-bold">price</label>
                                         <input type="integer" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" placeholder="">
-                                    
+
                                         <!-- error message untuk title -->
                                         @error('price')
                                             <div class="alert alert-danger mt-2">
@@ -213,11 +213,11 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label class="font-weight-bold">stock</label>
                                         <input type="integer" class="form-control @error('stock') is-invalid @enderror" name="stock" value="{{ old('stock') }}" placeholder="">
-                                    
+
                                         <!-- error message untuk title -->
                                         @error('stock')
                                             <div class="alert alert-danger mt-2">
@@ -225,11 +225,11 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label class="font-weight-bold">buy</label>
                                         <input type="integer" class="form-control @error('buy') is-invalid @enderror" name="buy" value="{{ old('buy') }}" placeholder="">
-                                    
+
                                         <!-- error message untuk title -->
                                         @error('buy')
                                             <div class="alert alert-danger mt-2">
@@ -237,11 +237,11 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label class="font-weight-bold">sell</label>
                                         <input type="integer" class="form-control @error('sell') is-invalid @enderror" name="sell" value="{{ old('sell') }}" placeholder="">
-                                    
+
                                         <!-- error message untuk title -->
                                         @error('sell')
                                             <div class="alert alert-danger mt-2">
@@ -249,11 +249,11 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label class="font-weight-bold">status</label>
                                         <input type="text" class="form-control @error('status') is-invalid @enderror" name="status" value="{{ old('status') }}" placeholder="">
-                                    
+
                                         <!-- error message untuk title -->
                                         @error('status')
                                             <div class="alert alert-danger mt-2">
@@ -261,11 +261,11 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label class="font-weight-bold">description</label>
                                         <input type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" placeholder="">
-                                    
+
                                         <!-- error message untuk title -->
                                         @error('description')
                                             <div class="alert alert-danger mt-2">
@@ -276,7 +276,7 @@
 
                                 </div>
                                 <!-- /.card-body -->
-                
+
                                 <div class="card-footer">
                                   <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
@@ -300,14 +300,14 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
-                
-  
+
+
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">
                     {{-- <a type="button" href="" class="btn btn-primary"> <i class="fa fa-plus"></i> Add Data</a> --}}
                         {{-- Add Data right side --}}
-                        <button class="btn  btn-success  btn-import-sales" type="button" id="btn-import" data-toggle="modal" data-target="#add_data_modal"><i class="fas fa-plus"></i> Add Data</button>
+                        <button class="btn  btn-primary  btn-import-sales" type="button" id="btn-import" data-toggle="modal" data-target="#add_data_modal"><i class="fas fa-plus"></i> Add Data</button>
                         <div class="progress" id="progressBar" style="text-align: center;height:20px; display:none" >
                             <div class="bar" style="text-align: center;height:20px;"></div >
                             <div class="percent" style="text-align: center; height:20px; padding-top:10px;margin:none;">0%</div >
